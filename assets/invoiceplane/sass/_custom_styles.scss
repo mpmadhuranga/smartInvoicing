@@ -1,0 +1,76 @@
+/*
+|   =========================================================
+|   Custom styles
+|   =========================================================
+*/
+table tr:hover td {
+  background: #efefef;
+}
+
+body *:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.form-control, .panel {
+  box-shadow: none;
+}
+.pagination-container{
+  width: 500px;
+  margin-bottom: 8px;
+  padding-top: 10px;
+  .page-details{
+    padding-top: 5px;
+    left: 130px;
+    text-align: right;
+  }
+  .page-buttons-container{
+    float: right;
+    padding-bottom: 12px;
+    .page-buttons-details{
+      float: right;
+    }
+  }
+}
+
+.total-stock-container{
+  padding: 12px;
+  .total-stock-tittle{
+    text-align: right;
+  }
+}
+.report-container {
+  background-color: #f1f1f1;
+  padding-bottom: 18px;
+  .report_title_container {
+    text-align: center;
+    margin-top: 12px;
+    padding-bottom: 15px;
+  }
+  .report-details-container {
+    padding-bottom: 12px;
+    .report-header-amount {
+      font-size: 28px;
+    }
+
+    .report-header-label {
+        text-transform: uppercase;
+    }
+    .report-header-amount-profit{
+      font-size: 28px;
+      font-weight: 500;
+    }
+  }
+}
+
+.filter-container{
+  padding-bottom: 12px;
+}
+.invoice-filter-container{
+ margin: 10px 20px 0 20px;
+}
+
+#add_product_modal{
+  height: calc(100vh - 180px);
+  overflow: auto;
+}

@@ -1,0 +1,15 @@
+/* =============================================================================
+   InvoicePlane
+   Custom Stylesheet
+
+   All changes made in this file will override the default styles in PDFs.
+   ========================================================================== */
+
+.table-addresses{
+    margin-top: 8px;
+    
+    background: #f5f5f5;
+}
+.outer-fonts{
+    font-size: 12px;
+}

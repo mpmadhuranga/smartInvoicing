@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "../sass/monospace.css",
+	"sources": [
+		"../sass/monospace.scss"
+	],
+	"sourcesContent": [
+		".amount {\r\n  font-family: Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace;\r\n  font-size: 90%;\r\n}\r\n"
+	],
+	"mappings": ";AAAA,AAAA,OAAO,CAAC;EACN,WAAW,EAAE,oEAAqE;EAClF,SAAS,EAAE,GAAI;CAChB",
+	"names": []
+}
