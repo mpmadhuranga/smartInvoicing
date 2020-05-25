@@ -4,7 +4,7 @@
            value="<?php echo $this->security->get_csrf_hash() ?>">
 
     <div id="headerbar">
-        <h1 class="headerbar-title"><?php _trans('product_for_client_update'); ?></h1>
+        <h1 class="headerbar-title"><?php // _trans('product_for_client_update'); ?> Update Product Value</h1>
         <?php $this->layout->load_view('layout/header_buttons'); ?>
     </div>
 
@@ -36,9 +36,9 @@
                             <select name="client_id" id="client_id" class="form-control simple-select">
                                 <option value="0"><?php _trans('select_client'); ?></option>
                                 <?php foreach ($records as $client) : ?>
-                                    <option value="<?php echo $this->input->get('cn'); ?>"
-<!--                                        --><?php //check_select($this->mdl_clients->client_lookup('client_name'),  $client->client_name); ?>
-                                    <?php echo $client->client_name; ?></option>
+                                    <option value="<?php echo $client->client_id; ?>"
+<?php check_select($client->client_id,  $client_id); ?>
+                                     ><?php echo $client->client_name; ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -51,8 +51,8 @@
                             <select name="product_id" id="product_id" class="form-control simple-select">
                                 <option value="0"><?php _trans('select_product'); ?></option>
                                 <?php foreach ($products as $product) : ?>
-                                    <option value="<?php echo $this->input->get('pn'); ?>" 
-                                    <!--                                        --><?php //check_select($this->mdl_pro->result_with_qty('client_name'),  $product->product_name); ?>
+                                    <option value="<?php echo $product->product_id; ?>"
+<?php check_select($product->product_id,$product_id); ?> >
                                     <?php echo $product->product_name; ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -65,7 +65,7 @@
 
                             <div class="input-group has-feedback">
                                 <input type="text" name="product_price" id="product_price" class="form-control"
-                                       value="<?php echo $this->input->get('sp'); ?>">
+                                       value="<?php echo $sel_price ?>">
                                 <span class="input-group-addon"><?php echo get_setting('currency_symbol'); ?></span>
                             </div>
                         </div>

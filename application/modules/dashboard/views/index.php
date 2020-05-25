@@ -75,24 +75,24 @@ if($this->session->userdata('user_type') != 4){
 				</div>
 
 				<table class="table table-bordered table-condensed no-margin">
-                    <?php foreach ($invoice_status_totals as $total) { ?>
+                    <?php  foreach ($invoice_status_totals as $total) { ?>
                         <tr>
 						<td><a href="<?php echo site_url($total['href']); ?>">
                                     <?php
-                        if ($total['label'] != "Partially Paid") {
+                      //  if ($total['label'] != "Partially Paid") {
                             ?>
                                         <?php echo $total['label']; ?>
                                         <?php
-                        }
+                       // }
                         ?>
                                 </a></td>
 						<td class="amount"><span class="<?php echo $total['class']; ?>">
                             <?php
-                        if ($total['invoice_status_id'] != 6) {
+                      //  if ($total['invoice_status_id'] != 6) {
                             ?>
                             <?php echo format_currency($total['sum_total']); ?>
                                 <?php
-                        }
+                      //  }
                         ?>
                         </span></td>
 					</tr>

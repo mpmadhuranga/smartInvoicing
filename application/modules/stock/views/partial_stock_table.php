@@ -1,13 +1,3 @@
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css">
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-<!--<script>-->
-<!--$(document).ready(function() {-->
-<!--    $('#stocktb').DataTable();-->
-<!--} );-->
-<!--</script>-->
-<div class="headerbar-item pull-right">
-    <?php echo pager(site_url('stock/index'), 'mdl_stock'); ?>
-</div>
 <div class="table-responsive">
     <table id="stocktb" class="table table-striped">
         <thead>
@@ -26,7 +16,7 @@
             <th><?php _trans('options'); ?></th>
         </tr>
         </thead>
-        <tbody>
+        <tbody id="table_body_stock">
         <?php foreach ($stock as $stockRow) :
             ?>
             <tr>
@@ -75,7 +65,4 @@
         <?php endforeach; ?>
         </tbody>
     </table>
-</div>
-<div class="headerbar-item pull-right">
-    <?php echo pager(site_url('stock/index'), 'mdl_stock'); ?>
 </div>

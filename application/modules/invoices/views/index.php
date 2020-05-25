@@ -12,9 +12,9 @@
         </a>
     </div>
 
-<!--     <div class="headerbar-item pull-right visible-lg">-->
-<!--        --><?php //echo pager(site_url('invoices/status/' . $this->uri->segment(3)), 'mdl_invoices'); ?>
-<!--     </div>-->
+    <!--     <div class="headerbar-item pull-right visible-lg">-->
+    <!--        --><?php //echo pager(site_url('invoices/status/' . $this->uri->segment(3)), 'mdl_invoices'); ?>
+    <!--     </div>-->
 
     <div class="headerbar-item pull-right visible-lg">
         <div class="btn-group btn-group-sm index-options">
@@ -132,7 +132,8 @@
                         <span class="input-group-addon">
                       <label>From</label>
                         </span>
-                        <input  autocomplete="off" placeholder="MM/DD/YYYY" name="from_date" id="from_date" class="form-control datepicker">
+                        <input autocomplete="off" placeholder="MM/DD/YYYY" name="from_date" id="from_date"
+                               class="form-control datepicker">
                         <span class="input-group-addon">
                             <i class="fa fa-calendar fa-fw"></i>
                         </span>
@@ -174,38 +175,37 @@
     });
 
     $("#to_date").change(function () {
-        if($("#from_date").val() === ''){
+        if ($("#from_date").val() === '') {
             $("#from_date").val($("#to_date").val());
         }
         filterInvoicesByDate();
     });
 
 
+    function filterInvoicesByClient() {
+        let filter_results = $('#filter_results');
+        filter_results.html('<h2 class="text-center"><i class="fa fa-spin fa-spinner"></i></h2>');
+        $.post('<?php echo site_url('invoices/ajax/filter_invoices_by_client'); ?>',
+            {
+                client_id: $('#client_id').val()
+            }, function (data) {
+                <?php echo(IP_DEBUG ? 'console.log(data);' : ''); ?>
+                $('#filter_results').html(data);
+            });
+    }
 
-   function filterInvoicesByClient() {
-       let filter_results = $('#filter_results');
-       filter_results.html('<h2 class="text-center"><i class="fa fa-spin fa-spinner"></i></h2>');
-       $.post('<?php echo site_url('invoices/ajax/filter_invoices_by_client'); ?>',
-           {
-               client_id: $('#client_id').val()
-           }, function (data) {
-               <?php echo(IP_DEBUG ? 'console.log(data);' : ''); ?>
-               $('#filter_results').html(data);
-           });
-   }
+    function filterInvoicesByDate() {
+        let filter_results = $('#filter_results');
 
-   function filterInvoicesByDate() {
-       let filter_results = $('#filter_results');
-
-       filter_results.html('<h2 class="text-center"><i class="fa fa-spin fa-spinner"></i></h2>');
-       $.post('<?php echo site_url('invoices/ajax/filter_invoices_by_date'); ?>',
-           {
-               to_date: $('#to_date').val(),
-               from_date: $("#from_date").val()
-           }, function (data) {
-               <?php echo(IP_DEBUG ? 'console.log(data);' : ''); ?>
-               $('#filter_results').html(data);
-           });
-   }
+        filter_results.html('<h2 class="text-center"><i class="fa fa-spin fa-spinner"></i></h2>');
+        $.post('<?php echo site_url('invoices/ajax/filter_invoices_by_date'); ?>',
+            {
+                to_date: $('#to_date').val(),
+                from_date: $("#from_date").val()
+            }, function (data) {
+                <?php echo(IP_DEBUG ? 'console.log(data);' : ''); ?>
+                $('#filter_results').html(data);
+            });
+    }
 
 </script>

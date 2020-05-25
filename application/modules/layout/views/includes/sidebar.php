@@ -64,10 +64,10 @@
         top: 0;
         left: 0;
         height: 100%;
-        overflow-y: auto;
         z-index: 999;
         background: #66757c;
         color: #fff;
+        overflow-y: hidden;
         transition: all 0.3s;
     }
 
@@ -271,6 +271,31 @@
     }
     .float-right{
         float: right;
+    }
+
+
+    #sidebar::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    #sidebar::-webkit-scrollbar-track {
+    //box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+
+    /* Handle */
+    #sidebar::-webkit-scrollbar-thumb {
+        background: #b6b2b2;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    #sidebar::-webkit-scrollbar-thumb:hover {
+        background: #aca8a8;
+    }
+    #sidebar:hover {
+        overflow-y: auto;
     }
 </style>
 

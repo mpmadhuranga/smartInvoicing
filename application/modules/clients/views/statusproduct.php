@@ -156,13 +156,6 @@
                                         <li><a
                                                     href="<?php echo site_url('clients/formupdate/' . $client->icp_id); ?>">
                                                 <i class="fa fa-edit fa-margin"></i> <?php _trans('edit'); ?>
-                                                <input
-                                                        type="hidden" name="pn"
-                                                        value="<?php echo($client->product_name) ?>"/> <input
-                                                        type="hidden" name="cn"
-                                                        value="<?php echo($client->client_name) ?>"/> <input
-                                                        type="hidden" name="sp"
-                                                        value="<?php echo($client->sel_price) ?>"/>
                                             </a></li>
                                         <li>
                                             <form
@@ -171,7 +164,7 @@
                                                 <?php _csrf_field(); ?>
                                                 <button
                                                         type="submit" class="dropdown-button"
-                                                        onclick="return confirm('<?php _trans('delete_client_warning'); ?>');">
+                                                        onclick="return confirm('Are you sure to delete assigned price?');">
                                                     <i class="fa fa-trash-o fa-margin"></i> <?php _trans('delete'); ?>
                                                 </button>
                                             </form>

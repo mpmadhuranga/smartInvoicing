@@ -79,6 +79,15 @@ where product_id=$product_id and client_id =$client_id";
         $query = $this->db->query($sql);
         return $result = $query->result();
     }
+
+    public function get_details_by_id($id)
+    {
+        $sql = "select idip_client_product,product_id,client_id,sel_price
+from ip_client_product
+where idip_client_product=$id";
+        $query = $this->db->query($sql);
+        return $result = $query->row();
+    }
     
     public function updatepro($id,$sel_price)
     {

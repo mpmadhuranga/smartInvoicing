@@ -74,7 +74,7 @@ class Clients extends Admin_Controller
         $this->load->model('mdl_clients');
         $cli = $this->mdl_clients->all_clients();
         $this->load->model('products/mdl_products');
-        $products = $this->mdl_products->result_with_qty();
+        $products = $this->mdl_products->allproducts();
 
         $this->layout->set(array(
             'records' => $clients,
@@ -223,7 +223,7 @@ class Clients extends Admin_Controller
     public function formupdate($id, $page = 0)
     {
         if ($this->input->post('btn_cancel')) {
-            redirect('clients');
+            redirect('clients/statusproduct');
         }
 
         $client_id = $this->input->post('client_id');
@@ -238,27 +238,23 @@ class Clients extends Admin_Controller
 
         if ($this->input->post('btn_submit')) {
             $this->mdl_client_product->update($id, $db_array);
+            redirect('clients/statusproduct');
         }
 
-        // if (is_numeric(array_search($status, array('active', 'inactive')))) {
-        // $function = 'is_' . $status;
-        // $this->mdl_clients->$function();
-        // }
+        $details = $this->mdl_client_product->get_details_by_id($id);
 
-        $status = "active";
-        $this->mdl_clients->with_total_balance()->paginate(site_url('clients/status/' . $status), $page);
-        $clients = $this->mdl_clients->result();
 
+        $this->load->model('mdl_clients');
+        $clients = $this->mdl_clients->all_clients();
         $this->load->model('products/mdl_products');
-        $this->mdl_products->paginate(site_url('products/index'), $page);
-        $products = $this->mdl_products->result_with_qty();
+        $products = $this->mdl_products->allproducts();
 
         $this->layout->set(array(
             'records' => $clients,
             'products' => $products,
-            'filter_display' => true,
-            'filter_placeholder' => trans('filter_clients'),
-            'filter_method' => 'filter_clients'
+            'product_id' => $details->product_id,
+            'client_id' => $details->client_id,
+            'sel_price' => $details->sel_price
         ));
 
         $this->layout->buffer('content', 'clients/formupdate');
@@ -469,9 +465,9 @@ class Clients extends Admin_Controller
         redirect('clients');
     }
 
-    public function deletepro($client_id)
+    public function deletepro($id)
     {
-        $this->mdl_client_product->delete($client_id);
+        $this->mdl_client_product->delete($id);
         redirect('clients/statusproduct');
     }
 }

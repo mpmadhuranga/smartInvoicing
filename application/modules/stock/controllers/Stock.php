@@ -143,34 +143,27 @@ class Stock extends Admin_Controller
         $stock_product_id = $this->input->post('stock_product_id');
         $stock_suppliers_id = $this->input->post('stock_suppliers_id');
         
-        if( $stock_suppliers_id ==0){
+        if( $stock_suppliers_id === '0' && $stock_product_id !== '0'){
             $stock = $this->mdl_stock
             ->where('stock_product_id = "'.$stock_product_id.'"')
             ->order_by('stock_create_date')
             ->get()
             ->result();
-        }
-        
-        if($stock_product_id ==0){
+        }else if($stock_product_id === '0' && $stock_suppliers_id !== '0'){
             $stock = $this->mdl_stock
             ->where('stock_suppliers_id = "'.$stock_suppliers_id.'" ')
             ->order_by('stock_create_date')
             ->get()
             ->result();
-        }
-        
-        if($stock_suppliers_id !=0 && $stock_product_id !=0){
+        }else  if($stock_suppliers_id !== '0' && $stock_product_id !== '0'){
             $stock = $this->mdl_stock
             ->where('stock_product_id = "'.$stock_product_id.'"')
             ->where('stock_suppliers_id = "'.$stock_suppliers_id.'" ')
             ->order_by('stock_create_date')
             ->get()
             ->result();
-        }
-        
-        if($stock_suppliers_id ==0 && $stock_product_id ==0){
+        }else if($stock_suppliers_id === '0' && $stock_product_id === '0'){
             $stock = $this->mdl_stock
-            ->order_by('stock_create_date')
             ->get()
             ->result();
         }

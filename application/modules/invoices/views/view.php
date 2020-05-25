@@ -181,11 +181,11 @@ $cv = $this->controller->view_data["custom_values"];
                         invoice_id: <?php echo $invoice_id; ?>,
                         invoice_number: $('#invoice_number').val(),
 
-                        billing_name: $('#billing_name_1').val() + "" + $('#billing_name_2').val(),
+                        billing_name: $('#billing_name').val(),
                         billing_st_1: $('#billing_st_1').val(),
                         billing_st_2: $('#billing_st_2').val(),
                         billing_city: $('#billing_city').val(),
-                        deliver_name: $('#deliver_name_1').val() + "" + $('#deliver_name_2').val(),
+                        deliver_name: $('#deliver_name').val(),
                         deliver_st_1: $('#deliver_st_1').val(),
                         deliver_st_2: $('#deliver_st_2').val(),
                         deliver_city: $('#deliver_city').val(),
@@ -244,11 +244,11 @@ $cv = $this->controller->view_data["custom_values"];
                         invoice_id: <?php echo $invoice_id; ?>,
                         invoice_number: $('#invoice_number').val(),
 
-                        billing_name: $('#billing_name_1').val() + "" + $('#billing_name_2').val(),
+                        billing_name: $('#billing_name').val(),
                         billing_st_1: $('#billing_st_1').val(),
                         billing_st_2: $('#billing_st_2').val(),
                         billing_city: $('#billing_city').val(),
-                        deliver_name: $('#deliver_name_1').val() + "" + $('#deliver_name_2').val(),
+                        deliver_name: $('#deliver_name').val(),
                         deliver_st_1: $('#deliver_st_1').val(),
                         deliver_st_2: $('#deliver_st_2').val(),
                         deliver_city: $('#deliver_city').val(),
@@ -486,7 +486,7 @@ if ($this->config->item('disable_read_only') == true) {
                         <?php if ($invoice->invoice_status_id == 1 && !$invoice->creditinvoice_parent_id) { ?>
                             <span id="invoice_change_client"
                                   class="fa fa-edit cursor-pointer small" data-toggle="tooltip"
-                                  data-placement="bottom" title="<?php _trans('change_client'); ?>"></span>
+                                  data-placement="bottom" title="<?php _trans('change_client'); ?>"> Change Client</span>
                         <?php } ?>
                     </h3>
                     <br>
@@ -494,196 +494,124 @@ if ($this->config->item('disable_read_only') == true) {
 
                         <!--<?php $this->layout->load_view('clients/partial_client_address', ['client' => $invoice]); ?>-->
 
-                        <table>
+            <!--    address details -->
+                        <div class="row">
+                        <div class="col-md-6">
+                            <h5>Billing Address</h5>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <label class="name-container">Company Name</label>
+                                <textarea id="billing_name" class="form-control" rows="2" ><?php if (($invoice->billing_name != null) && !empty(trim($invoice->billing_name))) {
+                                        echo trim($invoice->billing_name);
+                                    }else{
+                                        echo trim($invoice->client_name);
+                                    } ?></textarea>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <label class="name-container">Street Address 1</label>
+                                <input id="billing_st_1" value="<?php
 
-                            <tr>
-                                <td style="padding-top: 5px; padding-left: 15px; padding-bottom: 10px">
-                                    <table>
-                                        <tr><td style="padding-bottom: 4px"><b>Billing Address</b></td></tr>
-                                        <tr>
-                                            <td> Company Name
-                                                <input id="billing_name_1" value="<?php
+                                if (($invoice->billing_st_1 != null) && !empty(trim($invoice->billing_st_1))) {
+                                    echo trim($invoice->billing_st_1);
+                                } else {
+                                    echo trim($invoice->client_address_1);
+                                }
 
-                                                if (($invoice->billing_name != null) && !empty(trim($invoice->billing_name))) {
-                                                    echo(substr($invoice->billing_name, 0, 29));
-                                                } else {
-                                                    echo(substr($invoice->client_name, 0, 29));
-                                                }
-                                                ?>"style="width:270px;" type="text"class="form-control "/>
-                                            <td>
-                                        </tr>
+                                ?>" type="text" class="form-control input-sm"/>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <label class="name-container">Street Address 2</label>
+                                <input id="billing_st_2" value="<?php
 
-                                        <?php if ((strlen($invoice->client_name) > 29) && ($invoice->billing_name == null)) { ?>
-                                            <tr>
-                                                <td style="padding-top:3px;">
-                                                    <input id="billing_name_2" value="<?php
-
-                                                    if (($invoice->billing_name != null) && !empty(trim($invoice->billing_name))) {
-                                                        echo(substr($invoice->billing_name, 29, strlen($invoice->billing_name) - 28));
-                                                    } else {
-                                                        echo(substr($invoice->client_name, 29, strlen($invoice->client_name) - 28));
-                                                    }
-                                                    ?>" style="width:270px;" type="text"class="form-control "/>
-                                                <td>
-                                            </tr>
-                                        <?php } else if ((strlen($invoice->billing_name) > 29) && !($invoice->billing_name == null)) { ?>
-
-                                            <tr>
-                                                <td style="padding-top:3px;"><input id="billing_name_2" value="<?php
-
-                                                    if (($invoice->billing_name != null) && !empty(trim($invoice->billing_name))) {
-                                                        echo(substr($invoice->billing_name, 29, strlen($invoice->billing_name) - 28));
-                                                    } else {
-                                                        echo(substr($invoice->client_name, 29, strlen($invoice->client_name) - 28));
-                                                    }
-
-                                                    ?>"style="width:270px;" type="text"class="form-control "/>
-                                                <td>
-                                            </tr>
-
-                                        <?php } else { ?>
-                                            <input type="hidden" id="billing_name_2" value="">
-
-                                        <?php } ?>
-
-                                        <tr>
-                                            <td> Street Address 1<input id="billing_st_1" value="<?php
-
-                                                if (($invoice->billing_st_1 != null) && !empty(trim($invoice->billing_st_1))) {
-                                                    echo trim($invoice->billing_st_1);
-                                                } else {
-                                                    echo trim($invoice->client_address_1);
-                                                }
-
-                                                ?>" style="width:270px;" type="text" class="form-control "/>
-                                            <td>
-                                        </tr>
-                                        <tr>
-                                            <td> Street Address 2<input id="billing_st_2" value="<?php
-
-                                                if (($invoice->billing_st_2 != null) && !empty(trim($invoice->billing_st_2))) {
-                                                    echo trim($invoice->billing_st_2);
-                                                } else {
-                                                    echo trim($invoice->client_address_2);
-                                                }
+                                if (($invoice->billing_st_2 != null) && !empty(trim($invoice->billing_st_2))) {
+                                    echo trim($invoice->billing_st_2);
+                                } else {
+                                    echo trim($invoice->client_address_2);
+                                }
 
 
-                                                ?>" style="width:270px;" type="text" class="form-control "/>
-                                            <td>
-                                        </tr>
-                                        <tr>
-                                            <td> City<input type="text" id="billing_city" value="<?php
+                                ?>" type="text" class="form-control input-sm"/>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-md-12">
+                                <label class="name-container">City</label>
+                                <input type="text" id="billing_city" value="<?php
 
-                                                if (($invoice->billing_city != null) && !empty(trim($invoice->billing_city))) {
-                                                    echo trim($invoice->billing_city);
-                                                } else {
-                                                    echo trim($invoice->client_city) . ' ' . trim($invoice->client_zip);
-                                                }
-
-
-                                                ?>" style="width:270px;" class="form-control "/>
-                                            <td>
-                                        </tr>
-
-                                    </table>
-                                </td>
-
-                                <td style="padding-top: 5px; padding-bottom: 10px">
-                                    <table style="margin-left:75px;">
-                                        <tr><td style="padding-bottom: 4px"><b>Delivery Address</b></td></tr>
-                                        <tr>
-                                            <td> Company Name<input id="deliver_name_1" value="<?php
-
-                                                if (($invoice->deliver_name != null) && !empty(trim($invoice->deliver_name))) {
-                                                    echo(substr($invoice->deliver_name, 0, 29));
-                                                } else {
-                                                    echo(substr($invoice->client_name, 0, 29));
-                                                }
-                                                ?>" style="width:270px;" type="text" class="form-control "/>
-                                            <td>
-                                        </tr>
-
-                                        <?php if ((strlen($invoice->client_name) > 29) && ($invoice->deliver_name == null)) { ?>
-                                            <tr>
-                                                <td style="padding-top:3px;"><input id="deliver_name_2" value="<?php
-
-                                                    if (($invoice->deliver_name != null) && !empty(trim($invoice->deliver_name))) {
+                                if (($invoice->billing_city != null) && !empty(trim($invoice->billing_city))) {
+                                    echo trim($invoice->billing_city);
+                                } else {
+                                    echo trim($invoice->client_city) . ' ' . trim($invoice->client_zip);
+                                }
 
 
-                                                        echo(substr($invoice->deliver_name, 29, strlen($invoice->deliver_name) - 28));
+                                ?>" class="form-control input-sm"/>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>Delivery Address</h5>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="name-container">Company Name</label>
+                                    <textarea id="deliver_name" class="form-control" rows="2" ><?php
+                                        if (($invoice->deliver_name != null) && !empty(trim($invoice->deliver_name))) {
+                                            echo $invoice->deliver_name;
+                                        } else {
+                                            echo $invoice->client_name;
+                                        }?></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="name-container">Street Address 1</label>
+                                    <input id="deliver_st_1" value="<?php
 
-                                                    } else {
-                                                        echo(substr($invoice->client_name, 29, strlen($invoice->client_name) - 28));
-                                                    }
-                                                    ?>" style="width:270px;" type="text"class="form-control "/>
-                                                <td>
-                                            </tr>
-                                        <?php } else if ((strlen($invoice->deliver_name) > 29) && !($invoice->deliver_name == null)) { ?>
+                                    if (($invoice->deliver_st_1 != null) && !empty(trim($invoice->deliver_st_1))) {
+                                        echo trim($invoice->deliver_st_1);
+                                    } else {
+                                        echo trim($invoice->client_address_1);
+                                    }
 
-                                            <tr>
-                                                <td style="padding-top:3px;"><input id="deliver_name_2" value="<?php
+                                    ?>" type="text" class="form-control input-sm"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="name-container">Street Address 2</label>
+                                    <input id="deliver_st_2" value="<?php
 
-                                                    if (($invoice->deliver_name != null) && !empty(trim($invoice->deliver_name))) {
-                                                        echo(substr($invoice->deliver_name, 29, strlen($invoice->deliver_name) - 28));
+                                    if (($invoice->deliver_st_2 != null) && !empty(trim($invoice->deliver_st_2))) {
+                                        echo trim($invoice->deliver_st_2);
+                                    } else {
+                                        echo trim($invoice->client_address_2);
+                                    }
+                                    ?>" type="text" class="form-control input-sm"/>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="name-container">City</label>
+                                    <input type="text" id="deliver_city" value="<?php
 
-                                                    } else {
-                                                        echo(substr($invoice->client_name, 29, strlen($invoice->client_name) - 28));
-
-                                                    }
-
-                                                    ?>" style="width:270px;" type="text"class="form-control "/>
-                                                <td>
-                                            </tr>
-
-                                        <?php } else { ?>
-                                            <input type="hidden" id="deliver_name_2" value="">
-                                        <?php } ?>
-                                        <tr>
-                                            <td> Street Address 1<input id="deliver_st_1" value="<?php
-
-                                                if (($invoice->deliver_st_1 != null) && !empty(trim($invoice->deliver_st_1))) {
-                                                    echo trim($invoice->deliver_st_1);
-                                                } else {
-                                                    echo trim($invoice->client_address_1);
-                                                }
-
-                                                ?>" style="width:270px;" type="text" class="form-control "/>
-                                            <td>
-                                        </tr>
-                                        <tr>
-                                            <td> Street Address 2<input id="deliver_st_2" value="<?php
-
-                                                if (($invoice->deliver_st_2 != null) && !empty(trim($invoice->deliver_st_2))) {
-                                                    echo trim($invoice->deliver_st_2);
-                                                } else {
-                                                    echo trim($invoice->client_address_2);
-                                                }
-
-
-                                                ?>" style="width:270px;" type="text" class="form-control "/>
-                                            <td>
-                                        </tr>
-                                        <tr>
-                                            <td> City<input type="text" id="deliver_city" value="<?php
-
-                                                if (($invoice->deliver_city != null) && !empty(trim($invoice->deliver_city))) {
-                                                    echo trim($invoice->deliver_city);
-                                                } else {
-                                                    echo trim($invoice->client_city) . ' ' . trim($invoice->client_zip);
-                                                }
+                                    if (($invoice->deliver_city != null) && !empty(trim($invoice->deliver_city))) {
+                                        echo trim($invoice->deliver_city);
+                                    } else {
+                                        echo trim($invoice->client_city) . ' ' . trim($invoice->client_zip);
+                                    }
 
 
-                                                ?>" style="width:270px;" class="form-control "/>
-                                            <td>
-                                        </tr>
+                                    ?>" class="form-control input-sm"/>
+                                </div>
+                            </div>
+                        </div>
 
-                                    </table>
-
-                                </td>
-                            </tr>
-                        </table>
-
-
+                        </div>
+            <!-- END: address details-->
                     </div>
                     <?php if ($invoice->client_phone || $invoice->client_email) : ?>
                         <hr>
@@ -997,3 +925,10 @@ if ($this->config->item('disable_read_only') == true) {
 </div>
 
 <?php $this->layout->load_view('upload/dropzone-invoice-scripts'); ?>
+<style>
+    .name-container{
+        padding-top: 10px;
+        font-size: 10px;
+        color: grey;
+    }
+</style>
