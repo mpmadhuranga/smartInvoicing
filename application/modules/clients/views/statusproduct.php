@@ -54,7 +54,6 @@
             });
     }
 </script>
-<form method="post">
 
     <input type="hidden"
            name="<?php echo $this->config->item('csrf_token_name'); ?>"
@@ -180,5 +179,3 @@
         </div>
 
     </div>
-
-</form>

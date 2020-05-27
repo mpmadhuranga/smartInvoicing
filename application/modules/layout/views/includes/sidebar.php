@@ -548,32 +548,32 @@
                             </li>
                         </ul>
                     </li>
-                    <li <?php if($this->uri->segment(1) === 'settings'){?>class="active" <?php } ?>>
+                    <li <?php if($this->uri->segment(1) === 'settings' || $this->uri->segment(1) === 'users'){?>class="active" <?php } ?>>
                         <a href="#settingsMenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <i class="fa fa-cogs"></i>
                             <?php _trans('settings'); ?>
                         </a>
-                        <ul <?php if($this->uri->segment(1) === 'quotes'){?> class="collapse list-unstyled in" aria-expanded="true"  <?php } else{ ?> class="collapse list-unstyled" aria-expanded="false" <?php } ?> id="settingsMenu">
+                        <ul <?php if($this->uri->segment(1) === 'users'){?> class="collapse list-unstyled in" aria-expanded="true"  <?php } else{ ?> class="collapse list-unstyled" aria-expanded="false" <?php } ?> id="settingsMenu">
                             <li>
-                                <a href="<?php echo site_url('clients/form'); ?>"  aria-expanded="false" >
-                                    <?php _trans('add_client'); ?>
+                                <a href="<?php echo site_url('users/index'); ?>"  aria-expanded="false" >
+                                    <?php _trans('user_accounts'); ?>
                                 </a>
                             </li>
-                            <li>
-                                <a href="<?php echo site_url('clients/index'); ?>"  aria-expanded="false" >
-                                    <?php _trans('view_clients'); ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('clients/form'); ?>"  aria-expanded="false" >
-                                    <?php _trans('Add Suppliers'); ?>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="<?php echo site_url('clients/form'); ?>"  aria-expanded="false" >
-                                    <?php _trans('View suppliers'); ?>
-                                </a>
-                            </li>
+<!--                            <li>-->
+<!--                                <a href="--><?php //echo site_url('clients/index'); ?><!--"  aria-expanded="false" >-->
+<!--                                    --><?php //_trans('view_clients'); ?>
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="--><?php //echo site_url('clients/form'); ?><!--"  aria-expanded="false" >-->
+<!--                                    --><?php //_trans('Add Suppliers'); ?>
+<!--                                </a>-->
+<!--                            </li>-->
+<!--                            <li>-->
+<!--                                <a href="--><?php //echo site_url('clients/form'); ?><!--"  aria-expanded="false" >-->
+<!--                                    --><?php //_trans('View suppliers'); ?>
+<!--                                </a>-->
+<!--                            </li>-->
                         </ul>
                     </li>
 
