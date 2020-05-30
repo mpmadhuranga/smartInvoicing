@@ -90,7 +90,7 @@ function generate_invoice_pdf($invoice_id, $stream = true, $invoice_template = n
     }
     $CI->load->library('numbertoword');
     $data = array(
-        'word'=>$CI->numbertoword->convert_number($invoice->invoice_balance),
+        'word'=>$CI->numbertoword->convert_number(abs($invoice->invoice_balance)),
         'invoice' => $invoice,
         'invoice_tax_rates' => $CI->mdl_invoice_tax_rates->where('invoice_id', $invoice_id)->get()->result(),
         'username' => $CI->mdl_invoices->getusername($invoice->user_id),

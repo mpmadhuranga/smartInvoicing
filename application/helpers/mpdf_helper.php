@@ -46,7 +46,10 @@ function pdf_create(
         define('_MPDF_TTFONTDATAPATH', UPLOADS_TEMP_MPDF_FOLDER);
     }
 
-    $mpdf = new \Mpdf\Mpdf();
+    $mpdf = new \Mpdf\Mpdf([
+        'margin_top' => 0,
+        'margin_bottom' => 0
+    ]);
 
     // mPDF configuration
     $mpdf->useAdobeCJK = true;

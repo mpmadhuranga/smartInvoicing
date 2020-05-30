@@ -323,7 +323,8 @@ class Reports extends Admin_Controller
         $expenses_months =$this->mdl_reports->expenses_by_months($from_six, $to_six);
 
 //        print_r($receives_months);
-        //print_r($expenses_months);
+//        print_r($expenses_months);
+//        print_r($stock_months);
 
         $ret = array();
         foreach ($receives_months as $key => $value) {
@@ -334,17 +335,15 @@ class Reports extends Admin_Controller
         }
 
         $profit_months = array();
-        foreach ($ret as $key => $value) {
-            foreach ($expenses_months as $key_ex => $value_ex) {
-                if($value_ex['months'] === $value['month']){
-                    $profit_months[$key] = array('month'=>$value['month'],'value'=>$value['value'] - $value_ex['expenses']);
-                }else{
-                    $profit_months[$key] = array('month'=>$value['month'],'value'=>$value['value']);
+        foreach ($ret as $key =>$values) {
+        foreach ($expenses_months as $keys =>$value_ex) {
+                if($values['month'] === $value_ex['months'] ){
+                    $values['value'] = $values['value'] - $value_ex['expenses'];
                 }
             }
+            $profit_months[$key] = $values;
         }
-//        print_r($profit_months);
-//        print_r(json_encode($profit_months, true));
+
 
             $this->layout->set(
                 array(

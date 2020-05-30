@@ -137,7 +137,7 @@
                     <td><?php echo $stockRow->product_sku; ?></td>
                     <td><?php echo $stockRow->productname; ?></td>
                     <td><?php echo $stockRow->product_description; ?></td>
-                    <td><?php echo $stockRow->qty; ?></td>
+                    <td <?php if($stockRow->qty === '0'){ ?>style="color: #c20303" <?php } ?>><?php echo $stockRow->qty; ?></td>
                 </tr>
             <?php endforeach; ?>
             </tbody>

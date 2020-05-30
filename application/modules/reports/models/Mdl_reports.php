@@ -327,7 +327,7 @@ where payment_date BETWEEN '$from_date'  and '$to_date'";
     public function receives_by_months($from_date, $to_date)
     {
          $sql = "select sum(payment_amount) as paidamount, MONTH(payment_date) as months  from   ip_payments 
-where payment_date BETWEEN '$from_date'  and '$to_date' GROUP BY MONTH(payment_date)";
+where payment_date BETWEEN '$from_date'  and '$to_date' GROUP BY MONTH(payment_date) ORDER BY payment_date";
         $query = $this->db->query($sql);
         return $result = $query->result();
     }
