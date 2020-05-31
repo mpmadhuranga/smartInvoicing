@@ -65,7 +65,7 @@
         left: 0;
         height: 100%;
         z-index: 999;
-        background: #66757c;
+        background: #596163;
         color: #fff;
         overflow-y: hidden;
         transition: all 0.3s;
@@ -118,7 +118,7 @@
 
     #sidebar .sidebar-header {
         padding: 20px;
-        background: #4c575f;
+        background: #394247;
         color: #55acee;
     }
 
@@ -139,8 +139,8 @@
     }
 
     #sidebar ul li a:hover {
-        color: #56636c;
-        background: #fff;
+        color: #323232;
+        background: #bdc2c4;
     }
 
     #sidebar ul li a i {
@@ -150,7 +150,7 @@
     #sidebar ul li.active>a,
     a[aria-expanded="true"] {
         color: #fff;
-        background: #56636c;
+        background: #4e5558;
     }
 
     a[data-toggle="collapse"] {
@@ -168,7 +168,7 @@
     ul ul a {
         font-size: 0.9em !important;
         padding-left: 30px !important;
-        background: #56636c;
+        background: #394247;
     }
 
     ul.CTAs {
@@ -188,9 +188,12 @@
         color: #7386D5;
     }
 
-    a.article,
+    a.article{
+        background: #394247 !important;
+        color: #fff !important;
+    }
     a.article:hover {
-        background: #56636c !important;
+        background: #1f2326 !important;
         color: #fff !important;
     }
 
@@ -518,11 +521,11 @@
                                     <?php _trans('Profit by Client'); ?>
                                 </a>
                             </li>
-<!--                            <li>-->
-<!--                                <a href="--><?php //echo site_url('reports/inventory_report'); ?><!--"  aria-expanded="false" >-->
-<!--                                    --><?php //_trans('inventory_report'); ?>
-<!--                                </a>-->
-<!--                            </li>-->
+                            <li>
+                                <a href="<?php echo site_url('reports/inventory_report'); ?>"  aria-expanded="false" >
+                                    <?php _trans('inventory_report'); ?>
+                                </a>
+                            </li>
                             <li>
                                 <a href="<?php echo site_url('reports/stock_report'); ?>"  aria-expanded="false" >
                                     <?php _trans('stock_report'); ?>

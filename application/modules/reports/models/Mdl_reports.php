@@ -148,7 +148,7 @@ class Mdl_Reports extends CI_Model
         $mysql_fromdate = date('Y-m-d', strtotime($from_date));
         $mysql_todate = date('Y-m-d', strtotime($to_date));
         
-        $this->db->select("it.item_name as productname,i.invoice_number as invoiceid,i.invoice_date_created as created,c.client_name as clientname,it.item_quantity as qty,p.product_sku as product_sku");
+        $this->db->select("it.item_name as productname,i.invoice_number as invoice_number,i.invoice_id as invoice_id,i.invoice_date_created as created,c.client_name as clientname,it.item_quantity as qty,p.product_sku as product_sku");
         $this->db->from("ip_invoices i");
         $this->db->join("ip_invoice_items it", "i.invoice_id=it.invoice_id");
         $this->db->join("ip_products p", "p.product_id=it.item_product_id");
@@ -343,7 +343,7 @@ where stock_create_date BETWEEN '$from_date'  and '$to_date'";
     public function stock_sum_by_months($from_date, $to_date)
     {
         $sql = "select sum(buying_price * stock_open_qty) as buyingsubtotal, MONTH(stock_create_date) as months from ip_products_stock 
-where stock_create_date BETWEEN '$from_date'  and '$to_date' GROUP BY MONTH(stock_create_date)";
+where stock_create_date BETWEEN '$from_date'  and '$to_date' GROUP BY MONTH(stock_create_date)  ORDER BY stock_create_date";
         $query = $this->db->query($sql);
         return $result = $query->result_array();
     }

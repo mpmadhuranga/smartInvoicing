@@ -44,22 +44,22 @@ class Reports extends Admin_Controller
         $this->layout->buffer('content', 'reports/sales_by_client_index')->render();
     }
 
-   
-   
+
+
     public function payment_history()
     {
         $this->load->model('clients/mdl_clients');
-            
+
         if ($this->input->get('btn_submit')) {
 
-       
+
 
             $data = array(
                 'results' => $this->mdl_reports->payment_history($this->input->get('from_date'), $this->input->get('to_date'),$this->input->get('client_id')),
                 'from_date' => $this->input->get('from_date'),
                 'to_date' => $this->input->get('to_date'),
-              
-              
+
+
             );
 
             $html = $this->load->view('reports/payment_history', $data, true);
@@ -72,13 +72,13 @@ class Reports extends Admin_Controller
         $this->layout->set(
             array(
                 'clients' => $this->mdl_clients->all_clients(),
-      
+
             )
         );
 
         $this->layout->buffer('content', 'reports/payment_history_index')->render();
     }
-   
+
 
     public function invoice_aging()
     {
@@ -161,8 +161,8 @@ class Reports extends Admin_Controller
 
         $this->layout->buffer('content', 'reports/invoice_by_date_index')->render();
     }
-    
-    
+
+
       public function overdue_invoice_by_date()
     {
 
@@ -239,16 +239,16 @@ class Reports extends Admin_Controller
         $this->layout->buffer('content', 'reports/credit_note')->render();
 
     }
-    
-    
-    
-    
+
+
+
+
     public function view_credit_notes()
     {
         $this->load->model('clients/mdl_clients');
         $cli = $this->mdl_clients->all_clients();
 
-        
+
         $this->load->model('reports/mdl_reports');
         $this->load->model('suppliers/mdl_suppliers');
 
@@ -321,7 +321,7 @@ class Reports extends Admin_Controller
         $receives_months = $this->mdl_reports->receives_by_months($from_six, $to_six);
         $stock_months = $this->mdl_reports->stock_sum_by_months($from_six, $to_six);
         $expenses_months =$this->mdl_reports->expenses_by_months($from_six, $to_six);
-
+//
 //        print_r($receives_months);
 //        print_r($expenses_months);
 //        print_r($stock_months);
@@ -343,7 +343,6 @@ class Reports extends Admin_Controller
             }
             $profit_months[$key] = $values;
         }
-
 
             $this->layout->set(
                 array(
@@ -394,40 +393,40 @@ class Reports extends Admin_Controller
             pdf_create($html, trans('invoice_by_date'), true);
         }
     }
-    
+
         public function profit_report_new()
     {
-        
+
         if ($this->input->get('btn_submit')) {
             $fd = new DateTime($this->input->get('from_date'));
             $td = new DateTime($this->input->get('to_date'));
-            
+
             $from = $fd->format('Y-m-d');
             $to = $td->format('Y-m-d');
-            
+
             $data = array(
                 'results' => $this->mdl_reports->profit_by_date_new($from, $to),
                 'from_date' => $from,
                 'to_date' => $to,
             );
-            
+
             $html = $this->load->view('reports/profit_report_new', $data, true);
-            
+
             $this->load->helper('mpdf');
-            
+
             pdf_create($html, trans('invoice_by_date'), true);
         }
-        
-        
+
+
             $status='active';
             $this->load->model('clients/mdl_clients');
             $this->mdl_clients->with_total_balance()->paginate(site_url('clients/status/' . $status));
             $clients = $this->mdl_clients->result();
-            
+
             //        $this->load->model('invoices/mdl_invoices');
             //        $this->mdl_products->paginate(site_url('products/index'));
             //        $products = $this->mdl_products->result_with_qty();
-            
+
             $this->layout->set(
                 array(
                     'records' => $clients,
@@ -437,12 +436,12 @@ class Reports extends Admin_Controller
                     'filter_method' => 'filter_clients'
                 )
                 );
-            
+
             $this->layout->buffer('content', 'reports/profit_report_new_index')->render();
 
-        
+
     }
-    
+
     public function stock_report()
     {
 //        if ($this->input->get('btn_submit')) {
@@ -463,9 +462,9 @@ class Reports extends Admin_Controller
 
 //            $this->layout->buffer('content', 'reports/stock_report_index');
 //            $this->layout->render();
-            
+
             //$html = $this->load->view('reports/stock_report', $data, true);
-            
+
 //            $this->load->helper('mpdf');
 //
 //            pdf_create($html, trans('stock_report'), true);
@@ -485,6 +484,48 @@ class Reports extends Admin_Controller
             $this->load->helper('mpdf');
             pdf_create($html, trans('stock_report'), true);
 
+    }
+
+    public function inventory_report()
+    {
+
+        $this->load->model('products/mdl_products');
+        $products = $this->mdl_products->result_with_qty();
+
+        if ($this->input->post('btn_submit')) {
+            $result=null;
+            if($this->input->post('product_id')==0){
+                $result=$this->mdl_reports->inventory_all_report($this->input->post('from_date'), $this->input->post('to_date'));
+            }else if($this->input->post('product_id')!=0){
+                $result=$this->mdl_reports->inventory_pro_report($this->input->post('from_date'), $this->input->post('to_date'),$this->input->post('product_id'));
+            }
+
+
+            $this->layout->set(
+                [
+                    'results' => $result,
+                    'products' => $products,
+                    'from_date' => $this->input->post('from_date'),
+                    'to_date' => $this->input->post('to_date'),
+                    'product_id' => $this->input->post('product_id'),
+                ]
+            );
+
+//            $html = $this->load->view('reports/inventory_report', $data, true);
+//
+////            $this->load->helper('mpdf');
+////
+////            pdf_create($html, trans('inventory_report'), true);
+        }else{
+            $this->layout->set(
+                [
+                    'products' => $products,
+                    'product_id' => 0,
+                ]
+            );
+        }
+
+        $this->layout->buffer('content', 'reports/inventory_report_index')->render();
     }
 
 
