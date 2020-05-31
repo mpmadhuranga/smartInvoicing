@@ -154,7 +154,7 @@ class Mdl_Reports extends CI_Model
         $this->db->join("ip_products p", "p.product_id=it.item_product_id");
         $this->db->join("ip_clients c", "i.client_id=c.client_id");
         $this->db->where("i.invoice_date_created BETWEEN '$mysql_fromdate' and '$mysql_todate' and i.invoice_status_id=2");
-        $this->db->order_by('i.invoice_date_created');
+        $this->db->order_by('i.invoice_date_created DESC');
         $this->db->group_by('it.item_id');
         $query = $this->db->get();
         $result = $query->result();
@@ -166,14 +166,13 @@ class Mdl_Reports extends CI_Model
         $mysql_fromdate = date('Y-m-d', strtotime($from_date));
         $mysql_todate = date('Y-m-d', strtotime($to_date));
         
-        $this->db->select("it.item_name as productname,i.invoice_number as invoiceid,i.invoice_date_created as created,c.client_name as clientname,it.item_quantity as qty,p.product_sku as product_sku");
+        $this->db->select("it.item_name as productname,i.invoice_number as invoice_number,i.invoice_id as invoice_id,i.invoice_date_created as created,c.client_name as clientname,it.item_quantity as qty,p.product_sku as product_sku");
         $this->db->from("ip_invoices i");
         $this->db->join("ip_invoice_items it", "i.invoice_id=it.invoice_id");
         $this->db->join("ip_products p", "p.product_id=it.item_product_id");
         $this->db->join("ip_clients c", "i.client_id=c.client_id");
         $this->db->where("i.invoice_date_created BETWEEN '$mysql_fromdate'  and '$mysql_todate' and p.product_id = '$pro_id' and i.invoice_status_id=2");
-        $this->db->order_by('i.invoice_date_created');
-        // $this->db->group_by('p.product_id');
+        $this->db->order_by('i.invoice_date_created DESC');
         $this->db->group_by('it.item_id');
         $query = $this->db->get();
         $result = $query->result();

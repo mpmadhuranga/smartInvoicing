@@ -71,9 +71,16 @@ $cv = $this->controller->view_data["custom_values"];
         });
 
         $('.btn_add_product').click(function () {
+
             $('#modal-placeholder').load(
                 "<?php echo site_url('products/ajax/modal_product_lookups'); ?>/" + Math.floor(Math.random() * 1000), {
                     client_id: <?php echo $this->db->escape_str($invoice->client_id); ?>
+                }, function(response, status, xhr) {
+                    if(status === 'success'){
+                        $('#fullpage-loader').hide();
+                        $('.control-group').removeClass('has-error');
+                    }
+
                 }
             );
         });
