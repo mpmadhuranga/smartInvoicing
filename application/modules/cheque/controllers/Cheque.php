@@ -27,10 +27,21 @@ class Cheque extends Admin_Controller
         $this->load->model('mdl_cheque');
     }
 
-    public function index()
+    public function index($page = 0)
     {
-        // Display active clients by default
-        redirect('cheque/status/active');
+
+        $this->mdl_cheque->paginate(site_url('cheque/index'), $page);
+        $this->load->model('cheque/mdl_cheque');
+        $this->load->model('suppliers/mdl_suppliers');
+
+        $cheques = $this->mdl_cheque->result();
+
+        $this->layout->set(array(
+            'stock' => $cheques,
+            'supplier' => $this->mdl_suppliers->get()->result()
+        ));
+        $this->layout->buffer('content', 'cheque/index');
+        $this->layout->render();
     }
 
     /**
@@ -38,18 +49,9 @@ class Cheque extends Admin_Controller
      * @param string $status
      * @param int $page
      */
-    public function status($status = 'active', $page = 0)
+    public function status($page = 0)
     {
-        $this->load->model('cheque/mdl_cheque');
-        $this->load->model('suppliers/mdl_suppliers');
 
-        $this->layout->set(array(
-            'stock' => $this->mdl_cheque->allcheques(),
-            'supplier' => $this->mdl_suppliers->get()
-                ->result()
-        ));
-        $this->layout->buffer('content', 'cheque/index');
-        $this->layout->render();
     }
 
     /**

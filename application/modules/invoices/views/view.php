@@ -78,7 +78,6 @@ $cv = $this->controller->view_data["custom_values"];
                 }, function(response, status, xhr) {
                     if(status === 'success'){
                         $('#fullpage-loader').hide();
-                        $('.control-group').removeClass('has-error');
                     }
 
                 }

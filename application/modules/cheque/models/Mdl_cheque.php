@@ -18,6 +18,40 @@ class Mdl_Cheque extends Response_Model
     public $table = 'ip_cheques';
     public $primary_key = 'ip_cheques.cheque_id';
 
+
+    public function default_select()
+    {
+        $this->db->select("
+            SQL_CALC_FOUND_ROWS
+            ip_cheques.cheque_id,
+            ip_suppliers.supplier_name,
+            ip_cheques.added_date,
+            ip_cheques.amount,
+            ip_cheques.check_no,
+            ip_cheques.clear,
+            ip_cheques.*", false);
+    }
+
+    public function default_join()
+    {
+        $this->db->join('ip_suppliers', 'ip_suppliers.supplier_id = ip_cheques.supplier_id');
+    }
+
+    public function default_order_by()
+    {
+        $this->db->order_by('ip_cheques.added_date DESC');
+    }
+
+//    public function allcheques()
+//    {
+//        $this->db->select('c.cheque_id as cheque_id,s.supplier_name as supplier_name,c.added_date as added_date,c.amount as amount,c.check_no as check_no,c.clear as clear');
+//        $this->db->from('ip_cheques c');
+//        $this->db->join('ip_suppliers s', 'c.supplier_id = s.supplier_id');
+//        $query = $this->db->get();
+//        $result = $query->result();
+//        return $result;
+//    }
+
     /**
      * @param int $amount
      * @return mixed
