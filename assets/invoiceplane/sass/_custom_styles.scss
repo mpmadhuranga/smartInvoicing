@@ -74,3 +74,21 @@ body *:focus {
   height: calc(100vh - 180px);
   overflow: auto;
 }
+.show-notice{
+  display: none;
+}
+
+@media only screen and (max-width : 790px) {
+  .main-area {
+    display: none !important;
+  }
+  .show-notice{
+    display: block;
+    position: absolute;
+    height: 100px;
+    z-index: -1;
+    margin:0;
+    text-align: center;
+
+  }
+}

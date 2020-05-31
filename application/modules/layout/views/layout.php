@@ -8,14 +8,16 @@
 <html class="no-js ie8 oldie" lang="<?php _trans('cldr'); ?>"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js" lang="<?php _trans('cldr'); ?>"> <!--<![endif]-->
-
+<meta name="viewport" content="width=1024">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 <head>
     <?php
     // Get the page head content
     $this->layout->load_view('layout/includes/head');
     ?>
 </head>
-<body class="<?php echo get_setting('disable_sidebar') ? 'hidden-sidebar' : ''; ?>">
+<body>
+<!--<body class="--><?php //echo get_setting('disable_sidebar') ? 'hidden-sidebar' : ''; ?><!--">-->
 
 <noscript>
     <div class="alert alert-danger no-margin"><?php _trans('please_enable_js'); ?></div>
@@ -25,8 +27,10 @@
 // Get the navigation bar
 //$this->layout->load_view('layout/includes/navbar');
 ?>
-
-<div id="main-area">
+<div class="show-notice">
+    <h4>Download mobile app for better experience </h4>
+</div>
+<div id="main-area" class="main-area">
     <?php
     // Display the sidebar if enabled
 //    if (get_setting('disable_sidebar') != 1) {
