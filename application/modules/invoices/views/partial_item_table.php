@@ -89,7 +89,7 @@
             <?php if ($invoice->sumex_id == ""): ?>
                 <td class="td-textarea">
                     <div class="input-group">
-                        <span class="input-group-addon"><?php _trans('description'); ?></span>
+<!--                        <span class="input-group-addon">--><?php //_trans('description'); ?><!--</span>-->
                         <textarea name="item_description" class="input-sm form-control" readonly></textarea>
                     </div>
                 </td>
@@ -107,7 +107,7 @@
             <?php endif; ?>
             <td class="td-amount">
                 <div class="input-group">
-                    <span class="input-group-addon"><?php _trans('product_unit'); ?></span>
+                    <span class="input-group-addon"><?php _trans('Unit'); ?></span>
                     <select name="item_product_unit_id" class="form-control input-sm">
                         <option value="0"><?php _trans('none'); ?></option>
                         <?php foreach ($units as $unit) { ?>
@@ -120,7 +120,7 @@
             </td>
             <td class="td-amount td-vert-middle">
                 <span><?php _trans('subtotal'); ?></span><br/>
-                <span name="subtotal" class="amount"></span>
+                <span name="subtotal" class="amount">10</span>
             </td>
             <td class="td-amount td-vert-middle">
                 <span><?php _trans('discount'); ?></span><br/>
