@@ -2,9 +2,6 @@
     $(function () {
         
           $('#cancell').click(function () {
-           
-           
-           
             localStorage.removeItem('pageinv');
             localStorage.removeItem('max');
             localStorage.removeItem('min');
@@ -13,9 +10,9 @@
         });
         
          $('#successpay').click(function () {
-           
-            window.location = "<?php echo $_SERVER['HTTP_REFERER']; ?>";
+            //window.location = "<?php //echo $_SERVER['HTTP_REFERER']; ?>//";
             $('#enter-payment1').modal('hide');
+             filterInvoicesByClient();
        });
         
         $('#enter-payment').modal('show');
@@ -39,9 +36,9 @@
                     <?php echo(IP_DEBUG ? 'console.log(data);' : ''); ?>
                     var response = JSON.parse(data);
                     if (response.success === 1) {
-                        // The validation was successful and payment was added
                      $('#enter-payment').modal('hide');
-                         $('#enter-payment1').modal('show');
+                     $('#enter-payment1').modal('show');
+
                     }
                     else {
                         // The validation was not successful

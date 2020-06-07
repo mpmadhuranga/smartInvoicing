@@ -4,22 +4,12 @@ $cv = $this->controller->view_data['custom_values'];
 
 <script type="text/javascript">
     $(function () {
-        $('#btn-submit').attr('disabled',true);
-        $("#client_country").select2({
-            placeholder: "<?php _trans('country'); ?>",
-            allowClear: true
-        });
+        //$('#btn-submit').attr('disabled',true);
+        //$("#client_country").select2({
+        //    placeholder: "<?php //_trans('country'); ?>//",
+        //    allowClear: true
+        //});
     });
-    
-    function abc(){
-        var cliname = $('#client_name').val();
-        var addone = $('#client_address_1').val();
-        if(cliname!=""  && addone!=""){
-            $('#btn-submit').attr('disabled',false);
-        }else{
-            $('#btn-submit').attr('disabled',true);
-        }
-    }
 </script>
 
 <form method="post">
@@ -70,7 +60,7 @@ $cv = $this->controller->view_data['custom_values'];
                             <label for="client_name">
                                 <?php _trans('client_name'); ?>
                             </label>
-                            <input onkeyup="abc()" id="client_name" name="client_name" type="text" class="form-control" required
+                            <input id="client_name" name="client_name" type="text" class="form-control" required
                                    autofocus
                                    value="<?php echo $this->mdl_clients->form_value('client_name', true); ?>">
                         </div>
@@ -79,7 +69,7 @@ $cv = $this->controller->view_data['custom_values'];
                             <label for="client_surname">
                                 <?php _trans('client_surname_optional'); ?>
                             </label>
-                            <input onkeyup="abc()" id="client_surname" name="client_surname" type="text" class="form-control"
+                            <input id="client_surname" name="client_surname" type="text" class="form-control"
                                    value="<?php echo $this->mdl_clients->form_value('client_surname', true); ?>">
                         </div>
 
@@ -121,7 +111,7 @@ $cv = $this->controller->view_data['custom_values'];
                             <label for="client_address_1"><?php _trans('street_address'); ?></label>
 
                             <div class="controls">
-                                <input onkeyup="abc()" type="text" name="client_address_1" id="client_address_1" class="form-control"
+                                <input type="text" name="client_address_1" id="client_address_1" class="form-control"
                                        value="<?php echo $this->mdl_clients->form_value('client_address_1', true); ?>">
                             </div>
                         </div>
@@ -130,7 +120,7 @@ $cv = $this->controller->view_data['custom_values'];
                             <label for="client_address_2"><?php _trans('street_address_2'); ?></label>
 
                             <div class="controls">
-                                <input onkeyup="abc()" type="text" name="client_address_2" id="client_address_2" class="form-control"
+                                <input type="text" name="client_address_2" id="client_address_2" class="form-control"
                                        value="<?php echo $this->mdl_clients->form_value('client_address_2', true); ?>">
                             </div>
                         </div>

@@ -13,25 +13,24 @@
 
 <div>
 
-<div class="row" style="height:790;">
+    <div class="row" style="height:850px;">
+        <header class="clearfix">
 
-<header class="clearfix">
-
-<table class="table table-responsive" width="100%">
+            <table class="table table-responsive" width="100%" style="border-bottom: #adaeaf solid 1px" >
         <thead>
         <tr>
-            <th scope="col" style="">
+            <th scope="col" style="border-right: #adaeaf solid 2px;">
                 <div id="logo" style="text-align:left;">
                     <?php echo invoice_logo_pdf(); ?>
                 </div>
             </th>
-            <th scope="col" style="">
+            <th scope="col" style="text-align: justify;  margin-right: 5px; padding-left: 5px">
                 <!--      <div id="company" style="text-align:left;">-->
-                <div style="text-align: left;"><b>OUR TIMES LIQUOR & BEVERAGES</b></div>
-                <div style="font-weight: normal;text-align: left;">38 Ang Mo Kio Industrial Park 2</div>
-                <div style="font-weight: normal;text-align: left;">Singapore, 569511</div>
-                <div style="font-weight: normal;text-align: left;">Singapore</div>
-                <!--      </div>-->
+                <div ><b>OUR TIMES LIQUOR & BEVERAGES</b></div>
+                <div style="font-weight: normal; font-size: 12px">38 Ang Mo Kio Industrial Park 2</div>
+                <div style="font-weight: normal;font-size: 12px">Singapore, 569511</div><br/>
+                <div style="font-weight: normal;font-size: 12px; padding-top: 8px"><b>Co.Reg.No : </b> 53347053 J</div>
+                <div style="font-weight: normal;font-size: 12px"><b>Mobile : </b> <em>+65 83000331 </em></div>
             </th>
             <th scope="col" style="">
                 <div class="invoice-details clearfix">
@@ -42,7 +41,7 @@
                         </tr>
                         <tr>
                             <td style="text-align:left;"><?php echo trans('invoice_date') . ':'; ?></td>
-                            
+
                            <td style="text-align:left;"><?php echo date("d/m/20y", strtotime(date_from_mysql($invoice->invoice_date_created, true))); ?></td>
                             <!-- <td style="text-align:left;"><?php echo date_from_mysql($invoice->invoice_date_created, true); ?></td> -->
                         </tr>
@@ -72,144 +71,144 @@
     </table>
 
 
-    <table class="table table-responsive table-addresses" width="100%">
-    <thead>
-      
-      <tr>
-          <th scope="col" width="50%" style="text-align:left; float: right; padding-left: 15px; padding-top: 10px;border:1px solid black;">
-          <div style="font-weight: normal;font-size: 12px; color: #8d8c8c;padding-bottom:200px;">BILL TO</div>
-              <div id="client" >
-                  
-                  
-                  <?php   if(($invoice->billing_name!=null)&&!empty(trim($invoice->billing_name))){
-                      // if ($invoice->client_name) {
-                      //     echo '<div style="text-transform: uppercase">' . htmlsc($invoice->client_name) . '</div>';
-                      // }
-                      if ($invoice->billing_name) {
-                          echo '<div style="text-transform: uppercase">' . htmlsc($invoice->billing_name) . '</div>';
-                      }
-                      if ($invoice->billing_st_1) {
-                          echo '<div style="font-weight: normal;">' . htmlsc($invoice->billing_st_1) . '</div>';
-                      }
-                      if ($invoice->billing_st_2) {
-                          echo '<div style="font-weight: normal;">' . htmlsc($invoice->billing_st_2) . '</div>';
-                      }
-                      if ($invoice->billing_city) {
-                          echo '<div style="font-weight: normal;">' . htmlsc($invoice->billing_city) . '</div>';
-                      }            
-                  
-                  }else{
-                     
-                       if ($invoice->client_vat_id) {
-                          // echo '<div>' . trans('vat_id_short') . ': ' . $invoice->client_vat_id . '</div>';
-                      }
-                      if ($invoice->client_name) {
-                          echo '<div style="text-transform: uppercase">' . htmlsc($invoice->client_name) . '</div>';
-                      }
-                      if ($invoice->client_address_1) {
-                          echo '<div style="font-weight: normal;">' . htmlsc($invoice->client_address_1) . '</div>';
-                      }
-                      if ($invoice->client_address_2) {
-                          echo '<div style="font-weight: normal;">' . htmlsc($invoice->client_address_2) . '</div>';
-                      }
-                      if ($invoice->client_city || $invoice->client_state || $invoice->client_zip) {
-                          echo '<div>';
-                          if ($invoice->client_city) {
-                              // echo htmlsc($invoice->client_city) . ' ';
-                          }
-                          if ($invoice->client_state) {
-                              // echo htmlsc($invoice->client_state) . ' ';
-                          }
-                          if ($invoice->client_zip) {
-                              // echo htmlsc($invoice->client_zip);
-                          }
-                          echo '</div>';
-                      }
-                      if ($invoice->client_country) {
-                          // echo '<div>' . get_country_name(trans('cldr'), $invoice->client_country) . '</div>';
-                      }
+            <table class="table table-responsive table-addresses" width="100%" style="height:2000px;">
+                <thead>
 
-                      echo '<br/>';
-
-                      if ($invoice->client_phone) {
-                          // echo '<div>' . trans('phone_abbr') . ': ' . htmlsc($invoice->client_phone) . '</div>';
-                      }} ?>
-
-      
-      
-              </div>
-          </th>
+                <tr>
+                    <th scope="col" width="50%" style="text-align:left; float: right; padding-left: 15px; padding-top: 10px;">
+                        <div style="font-weight: normal;font-size: 12px; color: #8d8c8c;">BILL TO</div>
+                        <div id="client" >
 
 
-          <th scope="col" width="50%" style="text-align:left;border:1px solid black; padding-top: 10px;padding-left:15px; ">
-              <!-- Customer<br> -->
-              <div id="client" style="padding-bottom: 10px">
-                  <div style="font-weight: normal; font-size: 12px; color: #8d8c8c">DELIVER TO</div>
-               
-                  <?php   if(($invoice->deliver_name!=null)&&!empty(trim($invoice->deliver_name))){
-                      // if ($invoice->client_name) {
-                      //     echo '<div style="text-transform: uppercase">' . htmlsc($invoice->client_name) . '</div>';
-                      // }
-                      if ($invoice->deliver_name) {
-                          echo '<div style="text-transform: uppercase">' . htmlsc($invoice->deliver_name) . '</div>';
-                      }
-                      if ($invoice->deliver_st_1) {
-                          echo '<div style="font-weight: normal;">' . htmlsc($invoice->deliver_st_1) . '</div>';
-                      }
-                      if ($invoice->deliver_st_2) {
-                          echo '<div style="font-weight: normal;">' . htmlsc($invoice->deliver_st_2) . '</div>';
-                      }
-                      if ($invoice->deliver_city) {
-                          echo '<div style="font-weight: normal;">' . htmlsc($invoice->deliver_city) . '</div>';
-                      }     
+                            <?php   if(($invoice->billing_name!=null)&&!empty(trim($invoice->billing_name))){
+                                // if ($invoice->client_name) {
+                                //     echo '<div style="text-transform: uppercase">' . htmlsc($invoice->client_name) . '</div>';
+                                // }
+                                if ($invoice->billing_name) {
+                                    echo '<div style="text-transform: uppercase">' . htmlsc($invoice->billing_name) . '</div>';
+                                }
+                                if ($invoice->billing_st_1) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->billing_st_1) . '</div>';
+                                }
+                                if ($invoice->billing_st_2) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->billing_st_2) . '</div>';
+                                }
+                                if ($invoice->billing_city) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->billing_city) . '</div>';
+                                }
 
-                  }else{
+                            }else{
+
+                                if ($invoice->client_vat_id) {
+                                    // echo '<div>' . trans('vat_id_short') . ': ' . $invoice->client_vat_id . '</div>';
+                                }
+                                if ($invoice->client_name) {
+                                    echo '<div style="text-transform: uppercase">' . htmlsc($invoice->client_name) . '</div>';
+                                }
+                                if ($invoice->client_address_1) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->client_address_1) . '</div>';
+                                }
+                                if ($invoice->client_address_2) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->client_address_2) . '</div>';
+                                }
+                                if ($invoice->client_city || $invoice->client_state || $invoice->client_zip) {
+                                    echo '<div>';
+                                    if ($invoice->client_city) {
+                                        // echo htmlsc($invoice->client_city) . ' ';
+                                    }
+                                    if ($invoice->client_state) {
+                                        // echo htmlsc($invoice->client_state) . ' ';
+                                    }
+                                    if ($invoice->client_zip) {
+                                        // echo htmlsc($invoice->client_zip);
+                                    }
+                                    echo '</div>';
+                                }
+                                if ($invoice->client_country) {
+                                    // echo '<div>' . get_country_name(trans('cldr'), $invoice->client_country) . '</div>';
+                                }
+
+                                echo '<br/>';
+
+                                if ($invoice->client_phone) {
+                                    // echo '<div>' . trans('phone_abbr') . ': ' . htmlsc($invoice->client_phone) . '</div>';
+                                }} ?>
 
 
 
-                  if ($invoice->client_vat_id) {
-                      // echo '<div>' . trans('vat_id_short') . ': ' . $invoice->client_vat_id . '</div>';
-                  }
-                  if ($invoice->client_name) {
-                      echo '<div style="text-transform: uppercase">' . htmlsc($invoice->client_name) . '</div>';
-                  }
-                  if ($invoice->client_address_1) {
-                      echo '<div style="font-weight: normal;">' . htmlsc($invoice->client_address_1) . '</div>';
-                  }
-                  if ($invoice->client_address_2) {
-                      echo '<div style="font-weight: normal;">' . htmlsc($invoice->client_address_2) . '</div>';
-                  }
-                  if ($invoice->client_city || $invoice->client_state || $invoice->client_zip) {
-                      echo '<div>';
-                      if ($invoice->client_city) {
-                          // echo htmlsc($invoice->client_city) . ' ';
-                      }
-                      if ($invoice->client_state) {
-                          // echo htmlsc($invoice->client_state) . ' ';
-                      }
-                      if ($invoice->client_zip) {
-                          // echo htmlsc($invoice->client_zip);
-                      }
-                      echo '</div>';
-                  }
-                  if ($invoice->client_country) {
-                      // echo '<div>' . get_country_name(trans('cldr'), $invoice->client_country) . '</div>';
-                  }
+                        </div>
+                    </th>
 
-                  echo '<br/>';
 
-                  if ($invoice->client_phone) {
-                      // echo '<div>' . trans('phone_abbr') . ': ' . htmlsc($invoice->client_phone) . '</div>';
-                  } }?>
+                    <th scope="col" width="50%" style="text-align:left; padding-top: 10px;padding-left:15px; ">
+                        <!-- Customer<br> -->
+                        <div id="client" style="padding-bottom: 10px">
+                            <div style="font-weight: normal; font-size: 12px; color: #8d8c8c">DELIVER TO</div>
+
+                            <?php   if(($invoice->deliver_name!=null)&&!empty(trim($invoice->deliver_name))){
+                                // if ($invoice->client_name) {
+                                //     echo '<div style="text-transform: uppercase">' . htmlsc($invoice->client_name) . '</div>';
+                                // }
+                                if ($invoice->deliver_name) {
+                                    echo '<div style="text-transform: uppercase">' . htmlsc($invoice->deliver_name) . '</div>';
+                                }
+                                if ($invoice->deliver_st_1) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->deliver_st_1) . '</div>';
+                                }
+                                if ($invoice->deliver_st_2) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->deliver_st_2) . '</div>';
+                                }
+                                if ($invoice->deliver_city) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->deliver_city) . '</div>';
+                                }
+
+                            }else{
 
 
 
-              </div>
-          </th>
+                                if ($invoice->client_vat_id) {
+                                    // echo '<div>' . trans('vat_id_short') . ': ' . $invoice->client_vat_id . '</div>';
+                                }
+                                if ($invoice->client_name) {
+                                    echo '<div style="text-transform: uppercase">' . htmlsc($invoice->client_name) . '</div>';
+                                }
+                                if ($invoice->client_address_1) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->client_address_1) . '</div>';
+                                }
+                                if ($invoice->client_address_2) {
+                                    echo '<div style="font-weight: normal;">' . htmlsc($invoice->client_address_2) . '</div>';
+                                }
+                                if ($invoice->client_city || $invoice->client_state || $invoice->client_zip) {
+                                    echo '<div>';
+                                    if ($invoice->client_city) {
+                                        // echo htmlsc($invoice->client_city) . ' ';
+                                    }
+                                    if ($invoice->client_state) {
+                                        // echo htmlsc($invoice->client_state) . ' ';
+                                    }
+                                    if ($invoice->client_zip) {
+                                        // echo htmlsc($invoice->client_zip);
+                                    }
+                                    echo '</div>';
+                                }
+                                if ($invoice->client_country) {
+                                    // echo '<div>' . get_country_name(trans('cldr'), $invoice->client_country) . '</div>';
+                                }
 
-      </tr>
-      </thead>
-    </table>
+                                echo '<br/>';
+
+                                if ($invoice->client_phone) {
+                                    // echo '<div>' . trans('phone_abbr') . ': ' . htmlsc($invoice->client_phone) . '</div>';
+                                } }?>
+
+
+
+                        </div>
+                    </th>
+
+                </tr>
+                </thead>
+            </table>
 
 
 
@@ -302,7 +301,11 @@
 </header>
 
 <main>
-
+    <div class="row">
+        <div style="padding-bottom: 10px">
+            <span>Terms</span> - <span style="padding-right: 10px">COD</span>
+        </div>
+    </div>
     <!-- <div class="invoice-details clearfix">
         <table>
             <tr>
@@ -330,12 +333,6 @@
 
     <table class="item-table" style="margin-bottom:-7px;">
         <thead>
-        <tr>
-        <td>Terms</td>
-        </tr>
-        <tr>
-          <td>COD</td>
-        </tr>
         <tr >
          	<!--<th class="item-name" style="text-align:right;"><?php //_trans('product_sku'); ?></th>-->
             <th   class="item-name" style="text-align:right;border:1px solid black;background-color:grey;color:white;"><?php _trans('item'); ?></th>
@@ -596,9 +593,9 @@
                 <!--      <div id="company" style="text-align:left;">-->
                 <div style="text-align: left;"><b>OUR TIMES LIQUOR & BEVERAGES</b></div>
                 <div style="font-weight: normal;text-align: left;">38 Ang Mo Kio Industrial Park 2</div>
-                <div style="font-weight: normal;text-align: left;">Singapore, 569511</div>
-                <div style="font-weight: normal;text-align: left;">Singapore</div>
-                <!--      </div>-->
+                <div style="font-weight: normal;text-align: left;">Singapore, 569511</div><br/>
+                <div style="font-weight: normal;font-size: 12px; padding-top: 8px"><b>Co.Reg.No : </b> 53347053 J</div>
+                <div style="font-weight: normal;font-size: 12px"><b>Mobile : </b> <em>+65 83000331 </em></div>
             </th>
             <th scope="col" style="">
                 <div class="invoice-details clearfix">
