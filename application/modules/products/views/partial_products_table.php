@@ -5,9 +5,6 @@
 <!--    $('#protb').DataTable();-->
 <!--} );-->
 <!--</script>-->
-<div class="headerbar-item pull-right">
-    <?php echo pager(site_url('products/index'), 'mdl_products'); ?>
-</div>
 <div class="table-responsive">
     <table id="protb" class="table table-striped">
 

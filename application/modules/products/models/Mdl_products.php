@@ -63,6 +63,25 @@ class Mdl_Products extends Response_Model
          $this->db->where('ip_products.product_id', $match);
     }
 
+    public function search_product_id($match)
+    {
+         $this->db->where('ip_products.product_id', $match);
+         return $this;
+    }
+
+    public function search_by_family($match)
+    {
+        $this->db->where('ip_products.family_id', $match);
+        return $this;
+    }
+
+    public function search_by_family_product_id($id,$family_id)
+    {
+        $this->db->where('ip_products.product_id', $id);
+        $this->db->where('ip_products.family_id', $family_id);
+        return $this;
+    }
+
     public function result_with_qty()
     {
         $sql = 'SELECT SUM(ip_products_stock.stock_qty) as product_qty,product_id, ip_products.family_id, product_sku, product_name, product_description, product_price, purchase_price, provider_name, ip_products.tax_rate_id, ip_products.unit_id, product_tariff, ip_families.family_name, ip_units.unit_name FROM ip_products LEFT JOIN ip_products_stock ON ip_products.product_id = ip_products_stock.stock_product_id 
@@ -108,9 +127,18 @@ where p.family_id=f.family_id and p.product_id=$product_id";
     
     public function allproducts()
     {
-        $sql = "SELECT * from ip_products";
+        $sql = "SELECT * from ip_products order by product_name";
         $query = $this->db->query($sql);
         return $result = $query->result();
+    }
+
+    public function search_by_product_id($id)
+    {
+        $this->db->select('*');
+        $this->db->from('ip_products');
+        $this->db->where('product_id', $id);
+        $query = $this->db->get();
+        return $query->result();
     }
 
     /**

@@ -44,7 +44,7 @@ class Stock extends Admin_Controller
 
            $this->layout->set(
             array(
-                'product' => $this->mdl_products->result_with_qty(),
+                'product' => $this->mdl_products->allproducts(),
                 'supplier' => $this->mdl_suppliers->get()->result(),
                 'stock' => $stock
                 )

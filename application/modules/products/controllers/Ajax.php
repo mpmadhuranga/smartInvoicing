@@ -297,5 +297,28 @@ class Ajax extends Admin_Controller
         echo '</script>';
     }
 
+    public function search_products()
+    {
+        $this->load->model('mdl_products');
+        $product_families_id = $this->input->post('product_families_id');
+        $product_id = $this->input->post('product_id');
+
+        if($product_id === '0' && $product_families_id !== '0'){
+            $products = $this->mdl_products->search_by_family($product_families_id)->get()->result();
+        }else if($product_families_id === '0' && $product_id !== '0'){
+            $products = $this->mdl_products->search_product_id($product_id)->get()->result();
+        }else if($product_id === '0' && $product_families_id === '0'){
+            $products = $this->mdl_products->limit(15)->get()->result();
+        }else{
+            $products = $this->mdl_products->search_product_id($product_id,$product_families_id)->get()->result();
+          }
+
+        $data = array(
+            'products' => $products
+        );
+
+        $this->layout->load_view('products/partial_products_table', $data);
+    }
+
 
 }

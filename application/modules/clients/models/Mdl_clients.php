@@ -91,18 +91,8 @@ class Mdl_Clients extends Response_Model
             'client_tax_code' => array(
                 'field' => 'user_tax_code'
             ),
-            // SUMEX
-            'client_birthdate' => array(
-                'field' => 'client_birthdate',
-                'rules' => 'callback_convert_date'
-            ),
             'client_gender' => array(
                 'field' => 'client_gender'
-            ),
-            'client_avs' => array(
-                'field' => 'client_avs',
-                'label' => trans('sumex_ssn'),
-                'rules' => 'callback_fix_avs'
             ),
             'client_insurednumber' => array(
                 'field' => 'client_insurednumber',

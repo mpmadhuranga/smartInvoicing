@@ -32,9 +32,12 @@ class Products extends Admin_Controller
     {
         $this->mdl_products->paginate(site_url('products/index'), $page);
         $products = $this->mdl_products->result();
-
+        
+        $this->load->model('families/mdl_families');
         $this->layout->set(
             array(
+            'products_all' => $this->mdl_products->allproducts(),
+            'product_families' => $this->mdl_families->all_families(),
             'products' => $products,
             'filter_display' => true,
             'filter_placeholder' => trans('filter_products'),

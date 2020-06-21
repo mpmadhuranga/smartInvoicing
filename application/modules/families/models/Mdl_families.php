@@ -28,6 +28,13 @@ class Mdl_Families extends Response_Model
         $this->db->order_by('ip_families.family_name');
     }
 
+    public function all_families()
+    {
+        $sql = "SELECT * from ip_families order by family_name";
+        $query = $this->db->query($sql);
+        return $result = $query->result();
+    }
+
     /**
      * @return array
      */
