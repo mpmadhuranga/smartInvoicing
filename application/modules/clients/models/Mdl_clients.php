@@ -52,6 +52,9 @@ class Mdl_Clients extends Response_Model
                 'field' => 'client_language',
                 'label' => trans('language'),
             ),
+            'client_business' => array(
+                'field' => 'client_business'
+            ),
             'client_address_1' => array(
                 'field' => 'client_address_1'
             ),

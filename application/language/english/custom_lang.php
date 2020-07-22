@@ -13,5 +13,7 @@
  */
 
 $lang = array(
-
+    'basic_information' => 'Basic Information',
+    'client_type' => 'Client business',
+    'select_client_business'=> 'Select Client Business'
 );

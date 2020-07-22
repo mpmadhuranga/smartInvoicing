@@ -4,11 +4,10 @@ $cv = $this->controller->view_data['custom_values'];
 
 <script type="text/javascript">
     $(function () {
-        //$('#btn-submit').attr('disabled',true);
-        //$("#client_country").select2({
-        //    placeholder: "<?php //_trans('country'); ?>//",
-        //    allowClear: true
-        //});
+        $("#client_country").select2({
+            placeholder: "<?php _trans('country'); ?>",
+            allowClear: true
+        });
     });
 </script>
 
@@ -39,7 +38,7 @@ $cv = $this->controller->view_data['custom_values'];
 
                 <div class="panel panel-default">
                     <div class="panel-heading form-inline clearfix">
-                        <?php _trans('personal_information'); ?>
+                        <?php _trans('basic_information'); ?>
 
                         <div class="pull-right">
                             <label for="client_active" class="control-label">
@@ -73,6 +72,24 @@ $cv = $this->controller->view_data['custom_values'];
                                    value="<?php echo $this->mdl_clients->form_value('client_surname', true); ?>">
                         </div>
 
+                        <div class="form-group">
+                            <label for="client_business">
+                                <?php _trans('client_business'); ?>
+                            </label>
+                            <select name="client_business" id="client_business" class="form-control simple-select">
+                            <option value="system">
+                                    <?php _trans('select_client_business') ?>
+                                </option>
+                                <?php foreach ($client_businesses as $item) {
+                                    $client_business = $this->mdl_clients->form_value('client_business');
+                                    ?>
+                                    <option value="<?php echo $item; ?>"
+                                        <?php check_select($client_business, $item) ?>>
+                                        <?php echo ucfirst($item); ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                        </div>
                         <div class="form-group no-margin">
                             <label for="client_language">
                                 <?php _trans('language'); ?>
@@ -81,7 +98,8 @@ $cv = $this->controller->view_data['custom_values'];
                                 <option value="system">
                                     <?php _trans('use_system_language') ?>
                                 </option>
-                                <?php foreach ($languages as $language) {
+                                <?php
+                                foreach ($languages as $language) {
                                     $client_lang = $this->mdl_clients->form_value('client_language');
                                     ?>
                                     <option value="<?php echo $language; ?>"

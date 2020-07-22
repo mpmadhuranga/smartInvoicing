@@ -372,7 +372,8 @@ class Clients extends Admin_Controller
             'custom_values' => $custom_values,
             'countries' => get_country_list(trans('cldr')),
             'selected_country' => $this->mdl_clients->form_value('client_country') ?: get_setting('default_country'),
-            'languages' => get_available_languages()
+            'languages' => get_available_languages(),
+            'client_businesses' => array('Cafe','Carousell','Facebok','Hotel','Instagram','Lazada','Restaurant','Shop','Shopee','Web')
         ));
 
         $this->layout->buffer('content', 'clients/form');

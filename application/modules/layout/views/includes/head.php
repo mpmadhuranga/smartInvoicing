@@ -1,4 +1,4 @@
-<title><?php echo get_setting('custom_title', null, true) ?: 'InvoicePlane';?></title>
+<title><?php echo get_setting('custom_title', null, true) ?: 'Our Times';?></title>
 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -46,6 +46,9 @@
 
         $(document).on('click', '.create-invoice', function () {
             $('#modal-placeholder').load("<?php echo site_url('invoices/ajax/modal_create_invoice'); ?>");
+        });
+        $(document).on('click', '.create-purchase-order', function () {
+            $('#modal-placeholder').load("<?php echo site_url('purchase/ajax/modal_create_invoice'); ?>");
         });
         $(document).on('click', '.create-supplier_invoice', function () {
             $('#modal-placeholder').load("<?php echo site_url('supplier_invoices/ajax/modal_create_invoice'); ?>");

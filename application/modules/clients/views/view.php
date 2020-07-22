@@ -138,9 +138,15 @@ foreach ($custom_fields as $custom_field) {
                 <div class="col-xs-12 col-md-6">
 
                     <div class="panel panel-default no-margin">
-                        <div class="panel-heading"><?php _trans('contact_information'); ?></div>
+                        <div class="panel-heading"><?php _trans('basic_information'); ?></div>
                         <div class="panel-body table-content">
                             <table class="table no-margin">
+                            <?php if ($client->client_business) : ?>
+                                    <tr>
+                                        <th><?php _trans('client_type'); ?></th>
+                                        <td><?php _htmlsc($client->client_business); ?></td>
+                                    </tr>
+                                <?php endif; ?>
                                 <?php if ($client->client_email) : ?>
                                     <tr>
                                         <th><?php _trans('email'); ?></th>
