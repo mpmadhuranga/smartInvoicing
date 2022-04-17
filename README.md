@@ -1,25 +1,21 @@
 
 ### Quick Installation
 
-1.access the repository in bitbucket
+Feel free to clone this , invoicing system with inventory support 
 
-2.generate a ssh key
+1.cloned the project using this url 
 
-3.add generated ssh key in bitbucket
+2.restore db.sql
 
-4.cloned the project using this url 
+3.update database password in database.php
 
-5.restore db.sql
+4.access database
 
-6.update database password in database.php
+5.composer install
 
-7.access database
+6.npm install
 
-8.composer install
-
-9.npm install
-
-10.run system
+7.run system
 
 
 
